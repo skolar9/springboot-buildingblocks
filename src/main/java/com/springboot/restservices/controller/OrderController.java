@@ -18,8 +18,6 @@ import com.springboot.restservices.exceptions.UserNotFoundException;
 import com.springboot.restservices.repository.OrderRepository;
 import com.springboot.restservices.repository.UserRepository;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 @RestController
 @RequestMapping(value="/users")
 public class OrderController {

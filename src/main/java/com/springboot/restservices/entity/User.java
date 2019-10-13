@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.ResourceSupport;
+
 @Entity
 @Table(name="user")
-public class User {
+public class User extends ResourceSupport{
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long userid;
 
 	@NotEmpty(message="Username is mandatory field.Please provide username")
 	@Column(name="USER_NAME",length=50,nullable=false,unique=true)
@@ -47,9 +49,9 @@ public class User {
 		
 	}
 
-	public User(Long id, String userName, String firstName, String lastName, String email, String role, String ssn) {
+	public User(Long userid, String userName, String firstName, String lastName, String email, String role, String ssn) {
 		super();
-		this.id = id;
+		this.userid = userid;
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -58,12 +60,14 @@ public class User {
 		this.ssn = ssn;
 	}
 
-	public Long getId() {
-		return id;
+	
+
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUserName() {
@@ -124,7 +128,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+		return "User [userid=" + userid + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
 	}
 	

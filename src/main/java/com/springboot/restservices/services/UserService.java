@@ -1,7 +1,6 @@
 package com.springboot.restservices.services;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class UserService {
 	}
 
 	public User updateUserById(Long id, User user) {
-		user.setId(id);
+		user.setUserid(id);
 		return  ur.save(user);
 	}
 	

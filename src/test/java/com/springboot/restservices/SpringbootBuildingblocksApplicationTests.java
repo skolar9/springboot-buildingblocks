@@ -1,4 +1,4 @@
-package com.statcksimplify.restservices;
+package com.springboot.restservices;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
