@@ -18,6 +18,7 @@ public class Order extends ResourceSupport {
 	@Id
 	@GeneratedValue
 	private Long orderId;
+	
 	private String orderDescription;
 
 	@ManyToOne(fetch=FetchType.LAZY)
