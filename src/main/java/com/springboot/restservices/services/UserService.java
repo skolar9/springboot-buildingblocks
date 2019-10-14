@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.springboot.restservices.entity.Order;
 import com.springboot.restservices.entity.User;
 import com.springboot.restservices.exceptions.UserExistsException;
 import com.springboot.restservices.exceptions.UserNotFoundException;
+import com.springboot.restservices.repository.OrderRepository;
 import com.springboot.restservices.repository.UserRepository;
 
 @Service
@@ -18,6 +20,9 @@ public class UserService {
 	
 	@Autowired	
 	private UserRepository ur;
+	
+	@Autowired
+	private OrderRepository or;
 	
 	public List<User> getAllUsers() {
 		
@@ -30,7 +35,14 @@ public class UserService {
 		{
 			throw new UserExistsException("User already exists in repository");
 		}
-		return ur.save(user);	
+		
+		User u = ur.save(user);	
+		for(Order o:user.getOrders())
+		{
+			o.setUser(u);
+			or.save(o);
+		}
+		return u;
 	}
 	
 	public Optional<User> getUserById(Long id) throws UserNotFoundException
