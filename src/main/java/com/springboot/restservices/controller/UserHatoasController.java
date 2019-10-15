@@ -21,7 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.springboot.restservices.entity.Order;
 import com.springboot.restservices.entity.User;
 import com.springboot.restservices.exceptions.UserNotFoundException;
-import com.springboot.restservices.repository.UserRepository;
 import com.springboot.restservices.services.UserService;
 
 @RestController
@@ -29,8 +28,7 @@ import com.springboot.restservices.services.UserService;
 @Validated
 public class UserHatoasController {
 	
-	@Autowired
-	private UserRepository userRepository;
+	
 	
 	@Autowired
 	private UserService userService;

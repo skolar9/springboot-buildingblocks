@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.restservices.entity.Order;
 import com.springboot.restservices.entity.User;
 import com.springboot.restservices.exceptions.UserNotFoundException;
-import com.springboot.restservices.repository.OrderRepository;
 import com.springboot.restservices.repository.UserRepository;
 
 @RestController
@@ -23,8 +22,7 @@ public class OrderHateOasController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private OrderRepository orderRepository;
+	
 	
 	@GetMapping("/{userid}/orders")
 	public Resources<Order> getAllOrders(@PathVariable("userid") Long id) throws UserNotFoundException {
