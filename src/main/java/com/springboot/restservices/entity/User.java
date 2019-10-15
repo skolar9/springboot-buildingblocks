@@ -55,9 +55,39 @@ public class User extends ResourceSupport{
 	@JsonView(Views.Internal.class)
 	private List<Order> orders =new ArrayList<Order>();
 	
+	@Column(name="ADDRESS")
+	private String address;
+	
 	protected User(){
 		
 	}
+
+	
+	public User(Long userid, @NotEmpty(message = "Username is mandatory field.Please provide username") String userName,
+			@Size(min = 2, message = "First name sould have atleast 2 characters") String firstName, String lastName,
+			String email, String role, String ssn, List<Order> orders, String address) {
+		super();
+		this.userid = userid;
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.role = role;
+		this.ssn = ssn;
+		this.orders = orders;
+		this.address = address;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 
 	public User(Long userid, String userName, String firstName, String lastName, String email, String role, String ssn) {
 		super();
