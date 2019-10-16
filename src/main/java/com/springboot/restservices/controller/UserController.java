@@ -28,6 +28,10 @@ import com.springboot.restservices.exceptions.UserNameNotFoundException;
 import com.springboot.restservices.exceptions.UserNotFoundException;
 import com.springboot.restservices.services.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "User Management RESTful Services", value = "UserController", description = "Controller for User Management Service")
 @RestController
 @Validated
 @RequestMapping(value="/users")
@@ -38,6 +42,7 @@ public class UserController {
 	
 	
 	@GetMapping
+	@ApiOperation(value = "Retrieve list of users")
 	public List<User> getAllUsers(){
 		
 		return userService.getAllUsers();
@@ -45,6 +50,7 @@ public class UserController {
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Creates a new user")
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user,UriComponentsBuilder builder)
 	{
 		try {
@@ -58,9 +64,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<User> getUserById(@PathVariable("id") @Min(1) Long id){
+	public User getUserById(@PathVariable("id") @Min(1) Long id){
 		try{
-			return userService.getUserById(id);	
+			Optional<User> userOptional = userService.getUserById(id);	
+			return userOptional.get();
 		}catch(UserNotFoundException ex)
 		{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,ex.getMessage());

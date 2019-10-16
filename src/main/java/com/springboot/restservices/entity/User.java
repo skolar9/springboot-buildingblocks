@@ -16,15 +16,20 @@ import org.springframework.hateoas.ResourceSupport;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel(description = "This model is to create a user")
 @Entity
 @Table(name="user")
 public class User extends ResourceSupport{
 	
+	@ApiModelProperty(notes = " Auto generated unique id", required = true, position = 1)
 	@Id
 	@GeneratedValue
 	@JsonView(Views.External.class)
 	private Long userid;
-
+	
+	@ApiModelProperty(notes = "username should be in format flname", example = "kreddy", required = false, position = 2)
 	@NotEmpty(message="Username is mandatory field.Please provide username")
 	@Column(name="USER_NAME",length=50,nullable=false)
 	@JsonView(Views.External.class)
